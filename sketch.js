@@ -13,7 +13,6 @@ function preload() {
   city = "Viborg";
   api = "e812164ca05ed9e0344b89ebe273c141";
   json = loadJSON(url(city, api));
-  json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + round(json.coord.lat) + "&longitude=" + round(json.coord.lon) + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin");
 };
 
 function setup() {
@@ -81,7 +80,6 @@ function keyPressed() {
     city = inp.value();
     console.log(city);
     json = loadJSON(url(city, api), refresh);
-
   }
 }
 
