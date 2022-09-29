@@ -22,7 +22,14 @@ function setup() {
   inp.size(200, 40 * prop);
   inp.position(width - inp.size().width, 200);
   refresh();
-  
+
+  relevantFish = season();
+
+  for (i = 0; i < relevantFish.length; i++) {
+    console.log(
+      "Navn: " + relevantFish[i].name + " | Værdi: " + relevantFish[i].val
+    );
+  }
 }
 
 function draw() {
@@ -30,7 +37,7 @@ function draw() {
   fill(0);
   menuline();
   fpage();
-  
+
 }
 
 function refresh() {
@@ -47,9 +54,9 @@ function refresh() {
   var minutes = "0" + date.getMinutes();
   var seconds = "0" + date.getSeconds();
   let sunSetTime = hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
- 
+
   // Testing area
-  console.log("Current city: "+city);
+  console.log("Current city: " + city);
   console.log("Current tmp is: " + tmp + "°");
   console.log("Current weather: " + weather);
   console.log("Sunset is at: " + sunSetTime);
@@ -57,7 +64,7 @@ function refresh() {
   console.log("Max tmp is: " + tmpmax + "°");
   console.log("Realfeel is: " + tmpfeel + "°");
   console.log("Humidity is: " + humidity + "%");
-  
+
 }
 
 function url(city, api) {
@@ -74,27 +81,27 @@ function keyPressed() {
     city = inp.value();
     console.log(city);
     json = loadJSON(url(city, api), refresh);
-    
+
   }
 }
 
 
 
 function menuline() {
-let spacing = 260;
-let hspace = 120;
-fill(0,0,240);
-rect(0,0,width,hspace*prop);
-strokeWeight(2);
-line(hspace*prop, -hspace*prop, hspace*prop, hspace*prop);
-for (let i = 0; i < 9; i++) {
-line((hspace*prop)+(spacing*prop)*i,-spacing*prop,(hspace*prop)+spacing*prop*i,hspace*prop);
+  let spacing = 260;
+  let hspace = 120;
+  fill(0, 0, 240);
+  rect(0, 0, width, hspace * prop);
+  strokeWeight(2);
+  line(hspace * prop, -hspace * prop, hspace * prop, hspace * prop);
+  for (let i = 0; i < 9; i++) {
+    line((hspace * prop) + (spacing * prop) * i, -spacing * prop, (hspace * prop) + spacing * prop * i, hspace * prop);
+  }
+  line(0, hspace * prop, width, hspace * prop);
+  strokeWeight(1);
 }
-line(0,hspace*prop,width,hspace*prop);
-strokeWeight(1);
-}
-function fpage(){
-stroke(0);
-fill(255,255,0);
-rect(200,100,300,300);
+function fpage() {
+  stroke(0);
+  fill(255, 255, 0);
+  rect(200, 100, 300, 300);
 }
