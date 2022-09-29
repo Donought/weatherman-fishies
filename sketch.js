@@ -2,6 +2,7 @@ let prop = 1 / 4; //Prop = proportion
 let tmp = 0;
 let weather = "";
 let json;
+let json2;
 let api;
 let tillSet;
 let city;
@@ -12,11 +13,13 @@ let inp;
 function preload() {
   city = "Viborg";
   api = "e812164ca05ed9e0344b89ebe273c141";
-  json = loadJSON(url(city, api));
+  json = loadJSON(url(city, api), function () {
+    json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin");
+  });
 };
 
 function setup() {
-  createCanvas(1920 * prop, 3000 * prop);
+  createCanvas(innerWidth, 3000 * prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
   inp.position(width - inp.size().width, 200);
@@ -48,6 +51,8 @@ function refresh() {
   tmpfeel = json.main.feels_like;
   humidity = json.main.humidity;
   weather = json.weather[0].description;
+  precipitation = json2.daily.precipitation_sum[0];
+
   var date = new Date(sunset * 1000);
   var hours = date.getHours();
   var minutes = "0" + date.getMinutes();
@@ -63,7 +68,7 @@ function refresh() {
   console.log("Max tmp is: " + tmpmax + "°");
   console.log("Realfeel is: " + tmpfeel + "°");
   console.log("Humidity is: " + humidity + "%");
-
+  console.log("Precipitation is: " + precipitation + " mm");
 }
 
 function url(city, api) {
