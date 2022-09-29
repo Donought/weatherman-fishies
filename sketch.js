@@ -1,4 +1,4 @@
-let prop = 1 / 4; //Prop = proportion
+let prop = 1; //Prop = proportion
 let tmp = 0;
 let weather = "";
 let json;
@@ -17,7 +17,7 @@ function preload() {
 };
 
 function setup() {
-  createCanvas(1920 * prop, 3000 * prop);
+  createCanvas(innerWidth-16.45, 3000);
   inp = createInput("");
   inp.size(200, 40 * prop);
   inp.position(width - inp.size().width, 200);
@@ -87,21 +87,3 @@ function keyPressed() {
 
 
 
-function menuline() {
-  let spacing = 260;
-  let hspace = 120;
-  fill(0, 0, 240);
-  rect(0, 0, width, hspace * prop);
-  strokeWeight(2);
-  line(hspace * prop, -hspace * prop, hspace * prop, hspace * prop);
-  for (let i = 0; i < 9; i++) {
-    line((hspace * prop) + (spacing * prop) * i, -spacing * prop, (hspace * prop) + spacing * prop * i, hspace * prop);
-  }
-  line(0, hspace * prop, width, hspace * prop);
-  strokeWeight(1);
-}
-function fpage() {
-  stroke(0);
-  fill(255, 255, 0);
-  rect(200, 100, 300, 300);
-}
