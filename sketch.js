@@ -69,6 +69,11 @@ function refresh() {
   console.log("Realfeel is: " + tmpfeel + "°");
   console.log("Humidity is: " + humidity + "%");
   console.log("Precipitation is: " + precipitation + " mm");
+
+  console.log("\nFuture temperatures:");
+  for (i = 1; i < 6; i++) {
+    console.log("  " + json2.daily.time[i] + "\n    Min: " + json2.daily.temperature_2m_min[i] + json2.daily_units.temperature_2m_min + "\n    Max: " + json2.daily.temperature_2m_max[i] + json2.daily_units.temperature_2m_max);
+  }
 }
 
 function url(city, api) {
@@ -84,11 +89,11 @@ function keyPressed() {
   if (keyCode === ENTER) {
     city = inp.value();
     console.log(city);
-    json = loadJSON(url(city, api), refresh);
+    json = loadJSON(url(city, api), function () {
+      json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin", refresh);
+    });
   }
 }
-
-
 
 function menuline() {
   let spacing = 260;
@@ -103,6 +108,7 @@ function menuline() {
   line(0, hspace * prop, width, hspace * prop);
   strokeWeight(1);
 }
+
 function fpage() {
   stroke(0);
   fill(255, 255, 0);
