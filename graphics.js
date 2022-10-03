@@ -16,7 +16,17 @@ function menuline() {
 function fpage() {
     smargin = 40;
     stroke(0);
-    fill(255, 0, 0);
-    rect(0+smargin,0+smargin,width-smargin*2,height+smargin*9);
+    fill(200, 200, 200);
+    // Main body
+    rect(0+smargin,0+smargin*3,width-smargin*2,height+smargin*9);
+    // Left side boxes
+    
+    for (let i = 0; i < 7; i++) {
+      rect(smargin,(smargin*3)+(smargin*2)*i,smargin*5, smargin*2)
+    }
+    boxContent = [tmp,tmpmin,tmpmax,tmpfeel,humidity,weather,sunSetTime]
+
+
+    
   }
   

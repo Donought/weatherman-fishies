@@ -17,10 +17,10 @@ function preload() {
 };
 
 function setup() {
-  createCanvas(innerWidth-16.45, 3000);
+  createCanvas(innerWidth-16.45*prop, innerHeight-0.0001*prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
-  inp.position(width - inp.size().width, 200);
+  inp.position(width - inp.size().width, 40*3);
   refresh();
 
   relevantFish = season();
