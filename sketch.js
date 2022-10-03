@@ -111,8 +111,3 @@ function menuline() {
   strokeWeight(1);
 }
 
-function fpage() {
-  stroke(0);
-  fill(255, 255, 0);
-  rect(200, 100, 300, 300);
-}
