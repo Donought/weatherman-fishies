@@ -1,4 +1,4 @@
-let prop = 1 / 4; //Prop = proportion
+let prop = 1; //Prop = proportion
 let tmp = 0;
 let weather = "";
 let json;
@@ -19,10 +19,11 @@ function preload() {
 };
 
 function setup() {
+  createCanvas(innerWidth-16.45*prop, innerHeight-0.0001*prop);
   createCanvas(innerWidth, 3000 * prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
-  inp.position(width - inp.size().width, 200);
+  inp.position(width - inp.size().width, 40*3);
   refresh();
 
   relevantFish = season();
@@ -94,6 +95,7 @@ function keyPressed() {
     });
   }
 }
+
 
 function menuline() {
   let spacing = 260;
