@@ -19,8 +19,7 @@ function preload() {
 };
 
 function setup() {
-  createCanvas(innerWidth-16.45*prop, innerHeight-0.0001*prop);
-  createCanvas(innerWidth, 3000 * prop);
+  createCanvas(innerWidth-16.45*prop, (innerHeight-0.0001)*prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
   inp.position(width - inp.size().width, 40*3);
