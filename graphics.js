@@ -25,6 +25,28 @@ function fpage() {
       rect(smargin,(smargin*3)+(smargin*2)*i,smargin*5, smargin*2)
     }
     boxContent = [tmp,tmpmin,tmpmax,tmpfeel,humidity,weather,sunSetTime]
+    boxNames = ["Temperatur: ","Min tmp: ","Maks tmp: ","Føles som: ","Luftfugtighed: ","Vejrbeskrivelse: ","Solnedgang: "]
+    // Content for boxes left
+    textSize(16)
+    fill(0)
+    textFont("Solis")
+    for (let i = 0; i < 7; i++) {
+    text(boxContent[i],160,165+(i*165/2))
+    text(boxNames[i],smargin+smargin/3,165+(i*165/2),)
+    }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
     
