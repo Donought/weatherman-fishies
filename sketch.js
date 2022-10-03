@@ -14,15 +14,15 @@ function preload() {
   city = "Viborg";
   api = "e812164ca05ed9e0344b89ebe273c141";
   json = loadJSON(url(city, api), function () {
-    json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin");
+    json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin");
   });
 };
 
 function setup() {
-  createCanvas(innerWidth-16.45*prop, (innerHeight-0.0001)*prop);
+  createCanvas(innerWidth - 16.45 * prop, (innerHeight - 0.0001) * prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
-  inp.position(width - inp.size().width, 40*3);
+  inp.position(width - inp.size().width, 40 * 3);
   refresh();
 
   relevantFish = season();
@@ -39,7 +39,7 @@ function draw() {
   fill(0);
   menuline();
   fpage();
-
+  tempGraph(width / 4 * 3, height / 4 * 2, 1, 1);
 }
 
 function refresh() {
@@ -90,7 +90,7 @@ function keyPressed() {
     city = inp.value();
     console.log(city);
     json = loadJSON(url(city, api), function () {
-      json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin", refresh);
+      json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin", refresh);
     });
   }
 }
