@@ -38,7 +38,7 @@ function fpage() {
     // Arrays containing data and labels that will be displayed in the boxes
     boxContent = [tmp,tmpmin,tmpmax,tmpfeel,humidity,weather,sunSetTime,precipitation,windSpeed,windDir]
     boxNames = ["Temperatur: ","Min tmp: ","Maks tmp: ","Føles som: ","Luftfugtighed: ","Vejrbeskrivelse: ","Solnedgang: ","Nedbør: ","Vindhastighed: ","Vind fra: "]
-    icons = [tempImg,tempImg,tempImg,tempImg,humidityImg,cloudImg,sunImg,rainImg,windImg,windImg];
+    icons = [tempImg,tempImg,tempImg,tempImg,humidityImg,cloudImg,sunImg,rainImg,windImg,directionImg];
     // Content for boxes left
     textSize(16)
     fill(0)
