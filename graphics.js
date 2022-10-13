@@ -31,21 +31,24 @@ function fpage() {
   extraText = 0.5*weather.length
     }
       for (let i = 0; i < 11; i++) {
-      rect(smargin,(smargin*3)+(smargin*2)*i,smargin*5.6+(extraText), smargin*2)
+      rect(smargin,(smargin*3)+(smargin*2)*i,smargin*8+(extraText), smargin*2)
     }
 
 
     // Arrays containing data and labels that will be displayed in the boxes
     boxContent = [tmp,tmpmin,tmpmax,tmpfeel,humidity,weather,sunSetTime,precipitation,windSpeed,windDir]
     boxNames = ["Temperatur: ","Min tmp: ","Maks tmp: ","Føles som: ","Luftfugtighed: ","Vejrbeskrivelse: ","Solnedgang: ","Nedbør: ","Vindhastighed: ","Vind fra: "]
-    
+    icons = [tempImg,tempImg,tempImg,tempImg,humidityImg,cloudImg,sunImg,rainImg,windImg,windImg];
     // Content for boxes left
     textSize(16)
     fill(0)
     textFont("Solis")
     for (let i = 0; i < boxContent.length; i++) {
-    text(boxContent[i],160,165+(i*165/2))
-    text(boxNames[i],smargin+smargin/3,165+(i*165/2))
+    text(boxContent[i],160,160+(i*160/2))
+    text(boxNames[i],smargin+smargin/3,160+(i*160/2))
+    //sMod modifies the size of the icons
+    sMod = 60
+    image(icons[i],smargin*6.7+smargin/3,130+(i*160/2),sMod,sMod)
     }
     
   }
