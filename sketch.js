@@ -14,11 +14,11 @@ let windDir;
 let weatherD;
 
 // Symboler
-let fiskImg;
+let cloudImg;
+let fishImg;
 let humidityImg;
 let rainImg;
-let skyImg;
-let solImg;
+let sunImg;
 let sunsetImg;
 let tempImg;
 let windImg;
@@ -30,14 +30,14 @@ function preload() {
     json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin");
   });
 
-  fiskImg = loadImage("assets/Fisk.png");
-  humidityImg = loadImage("assets/Humidity.png");
-  rainImg = loadImage("assets/Rain.png");
-  skyImg = loadImage("assets/Sky.png");
-  solImg = loadImage("assets/Sol.png");
-  sunsetImg = loadImage("assets/Sunset.png");
-  tempImg = loadImage("assets/Temp.png");
-  windImg = loadImage("assets/Wind.png");
+  cloudImg = loadImage("assets/cloud.png");
+  fishImg = loadImage("assets/fish.png");
+  humidityImg = loadImage("assets/humidity.png");
+  rainImg = loadImage("assets/rain.png");
+  sunImg = loadImage("assets/sun.png");
+  sunsetImg = loadImage("assets/sunset.png");
+  tempImg = loadImage("assets/temp.png");
+  windImg = loadImage("assets/wind.png");
 };
 
 function setup() {
