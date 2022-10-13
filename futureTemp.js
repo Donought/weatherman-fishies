@@ -1,8 +1,4 @@
 function futureTemp() {
-  function fLine(a, b, c) {
-    stroke(0);
-    line(x + 20, y + c, x + b, y + c);
-  }
   function fText(txt, a, b, s) {
     textAlign(LEFT, CENTER);
     textSize(s);
@@ -24,7 +20,7 @@ function futureTemp() {
 
   fBox(0, 0, w, h);
 
-  fText("Vejr i fremtiden", 30, 45, 40);
+  fText("Vejr i fremtiden", 20, 45, 40);
   //fLine(20, w - 20, 60);
 
   for (i = 0; i < 5; i++) {
@@ -32,6 +28,7 @@ function futureTemp() {
     fBox(20, 90 + a * i, w - 40, a);
     fText(json2.daily.time[i + 1], 60, 90 + a * i + a * 0.5, 30);
 
+    // Temperatur (både min og max i celsius)
     fBox(240, 100 + a * i, 390, a - 20);
     image(tempImg, x + 250, y + 110 + a * i, a - 40, a - 40);
     fText(
@@ -47,6 +44,14 @@ function futureTemp() {
       30
     );
 
+    // Nedbør (sum i ml)
     fBox(640, 100 + a * i, w - 670, a - 20);
+    image(rainImg, x + 660, y + 110 + a * i, a - 40, a - 40);
+    fText(
+      "Sum: " + json2.daily.precipitation_sum[i + 1] + " ml",
+      760,
+      90 + a * i + a * 0.5,
+      30
+    );
   }
 }
