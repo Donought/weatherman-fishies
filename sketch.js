@@ -63,6 +63,8 @@ function draw() {
   fpage();
   fdisplay();
   console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
+
+  image(fishImg, width/2-fishImg.width/2, height/2-fishImg.height/2);
 }
 
 function refresh() {
