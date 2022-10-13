@@ -13,6 +13,15 @@ let windSpeed;
 let windDir;
 let weatherD;
 
+// Symboler
+let cloudImg;
+let fishImg;
+let humidityImg;
+let rainImg;
+let sunImg;
+let sunsetImg;
+let tempImg;
+let windImg;
 
 function preload() {
   city = "Viborg";
@@ -20,6 +29,15 @@ function preload() {
   json = loadJSON(url(city, api), function () {
     json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin");
   });
+
+  cloudImg = loadImage("assets/cloud.png");
+  fishImg = loadImage("assets/fish.png");
+  humidityImg = loadImage("assets/humidity.png");
+  rainImg = loadImage("assets/rain.png");
+  sunImg = loadImage("assets/sun.png");
+  sunsetImg = loadImage("assets/sunset.png");
+  tempImg = loadImage("assets/temp.png");
+  windImg = loadImage("assets/wind.png");
 };
 
 function setup() {
@@ -45,6 +63,8 @@ function draw() {
   fpage();
   fdisplay();
   console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
+
+  image(fishImg, width/2-fishImg.width/2, height/2-fishImg.height/2);
 }
 
 function refresh() {
@@ -57,16 +77,12 @@ function refresh() {
   humidity = json.main.humidity;
   weather = json.weather[0].description;
 
-
-
-
-
   precipitation = json2.daily.precipitation_sum[0];
   windSpeed = json.wind.speed;
   windDeg = json.wind.deg;
 
 // If statements translating the wind direction into a cardinal directions
-  let steps = 360/16
+let steps = 360/16
 if(windDeg < steps || windDeg > steps*15 ){
   windDir = "Nord"
 }
@@ -92,16 +108,11 @@ else if(windDeg > steps*13 && windDeg < steps*15 ){
   windDir = "Nordøst"
 }
 
-
-
-
-
   let date = new Date(sunset * 1000);
   let hours = date.getHours();
   let minutes = "0" + date.getMinutes();
   let seconds = "0" + date.getSeconds();
   sunSetTime = hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
-  
 
   // Testing area
   console.log("Current city: " + city);
@@ -128,6 +139,7 @@ function url(city, api) {
     api
   );
 }
+
 function keyPressed() {
   if (keyCode === ENTER) {
     city = inp.value();
@@ -137,7 +149,3 @@ function keyPressed() {
     });
   }
 }
-
-
-
-
