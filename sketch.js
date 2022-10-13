@@ -13,6 +13,15 @@ let windSpeed;
 let windDir;
 let weatherD;
 
+// Symboler
+let fiskImg;
+let humidityImg;
+let rainImg;
+let skyImg;
+let solImg;
+let sunsetImg;
+let tempImg;
+let windImg;
 
 function preload() {
   city = "Viborg";
@@ -20,6 +29,15 @@ function preload() {
   json = loadJSON(url(city, api), function () {
     json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin");
   });
+
+  fiskImg = loadImage("assets/Fisk.png");
+  humidityImg = loadImage("assets/Humidity.png");
+  rainImg = loadImage("assets/Rain.png");
+  skyImg = loadImage("assets/Sky.png");
+  solImg = loadImage("assets/Sol.png");
+  sunsetImg = loadImage("assets/Sunset.png");
+  tempImg = loadImage("assets/Temp.png");
+  windImg = loadImage("assets/Wind.png");
 };
 
 function setup() {
@@ -57,16 +75,12 @@ function refresh() {
   humidity = json.main.humidity;
   weather = json.weather[0].description;
 
-
-
-
-
   precipitation = json2.daily.precipitation_sum[0];
   windSpeed = json.wind.speed;
   windDeg = json.wind.deg;
 
 // If statements translating the wind direction into a cardinal directions
-  let steps = 360/16
+let steps = 360/16
 if(windDeg < steps || windDeg > steps*15 ){
   windDir = "Nord"
 }
@@ -92,16 +106,11 @@ else if(windDeg > steps*13 && windDeg < steps*15 ){
   windDir = "Nordøst"
 }
 
-
-
-
-
   let date = new Date(sunset * 1000);
   let hours = date.getHours();
   let minutes = "0" + date.getMinutes();
   let seconds = "0" + date.getSeconds();
   sunSetTime = hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
-  
 
   // Testing area
   console.log("Current city: " + city);
@@ -128,6 +137,7 @@ function url(city, api) {
     api
   );
 }
+
 function keyPressed() {
   if (keyCode === ENTER) {
     city = inp.value();
@@ -137,7 +147,3 @@ function keyPressed() {
     });
   }
 }
-
-
-
-
