@@ -1,5 +1,7 @@
 
 let extraText = 0
+let fishNames = []
+let fishScore = []
 function menuline() {
     // Creates menuline at the top
     let spacing = 260;
@@ -35,11 +37,11 @@ function fpage() {
     }
 
 
-    // Arrays containing data and labels that will be displayed in the boxes
-    boxContent = [tmp,tmpmin,tmpmax,tmpfeel,humidity,weather,sunSetTime,precipitation,windSpeed,windDir]
+    // Arrays containing data, labels and icons that will be displayed in the boxes
+    boxContent = [tmp+"°",tmpmin+"°",tmpmax+"°",tmpfeel+"°",humidity+"%",weather,"kl: "+sunSetTime,precipitation+" ml",windSpeed+" m/s",windDir]
     boxNames = ["Temperatur: ","Min tmp: ","Maks tmp: ","Føles som: ","Luftfugtighed: ","Vejrbeskrivelse: ","Solnedgang: ","Nedbør: ","Vindhastighed: ","Vind fra: "]
-    icons = [tempImg,tempImg,tempImg,tempImg,humidityImg,cloudImg,sunImg,rainImg,windImg,directionImg];
-    // Content for boxes left
+    icons = [tempImg,tempImg,tempImg,tempImg,humidityImg,cloudImg,sunsetImg,rainImg,windImg,directionImg];
+    // Inserting content into left boxes using a for-loop
     textSize(16)
     fill(0)
     textFont("Solis")
@@ -50,10 +52,39 @@ function fpage() {
     sMod = 60
     image(icons[i],smargin*6.7+smargin/3,130+(i*160/2),sMod,sMod)
     }
-    
+
+
+// Seasonal fish
+noFill()
+stroke(0)
+rect(width-smargin,0+smargin*3,-smargin*8+(extraText),height)
+textSize(32)
+fill(0)
+
+text("Fisk lige nu:",width-smargin*7,smargin*4.9)
+textSize(20)
+for (let i = 0; i < fishNames.length; i++) {
+  fill(0)
+  noStroke()
+  text(fishNames[i],width-smargin*8,smargin*6.5+i*28)
+  if(fishScore[i]>1){
+    fill(0,255,0)
+  }else{
+    fill(0)
   }
-  function fdisplay(){
-    fill(255,0,0)
-rect(width-smargin*2,0,width-smargin,10)
+  text(fishScore[i],width-smargin*4,smargin*6.5+i*28)
+}
+fill(0)  
+text("Type:                       Score:",width-smargin*8,smargin*5.7)
+
+
 
   }
+function fishSorter(){
+  for (let i = 0; i < relevantFish.length; i++) {
+    fishNames.push(relevantFish[i].name)
+    fishScore.push(relevantFish[i].val)
+    
+  }
+
+}

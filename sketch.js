@@ -52,10 +52,12 @@ function setup() {
   relevantFish = season();
 
   for (i = 0; i < relevantFish.length; i++) {
-    console.log(
+    /*console.log(
       "Navn: " + relevantFish[i].name + " | Værdi: " + relevantFish[i].val
     );
+    */
   }
+  fishSorter()
 }
 
 function draw() {
@@ -63,8 +65,9 @@ function draw() {
   fill(0);
   menuline();
   fpage();
-  fdisplay();
-  console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
+  
+  //fdisplay();
+  //console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
 
   //image(fishImg, width/2-fishImg.width/2, height/2-fishImg.height/2);
 }
@@ -127,10 +130,11 @@ else if(windDeg > steps*13 && windDeg < steps*15 ){
   console.log("Humidity is: " + humidity + "%");
   console.log("Precipitation is: " + precipitation + " mm");
 
-  console.log("\nFuture temperatures:");
+  //console.log("\nFuture temperatures:");
   for (i = 1; i < 6; i++) {
-    console.log("  " + json2.daily.time[i] + "\n    Min: " + json2.daily.temperature_2m_min[i] + json2.daily_units.temperature_2m_min + "\n    Max: " + json2.daily.temperature_2m_max[i] + json2.daily_units.temperature_2m_max);
+   // console.log("  " + json2.daily.time[i] + "\n    Min: " + json2.daily.temperature_2m_min[i] + json2.daily_units.temperature_2m_min + "\n    Max: " + json2.daily.temperature_2m_max[i] + json2.daily_units.temperature_2m_max);
   }
+
 }
 
 function url(city, api) {
