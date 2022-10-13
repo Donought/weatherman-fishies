@@ -15,6 +15,7 @@ let weatherD;
 
 // Symboler
 let cloudImg;
+let directionImg;
 let fishImg;
 let humidityImg;
 let rainImg;
@@ -31,6 +32,7 @@ function preload() {
   });
 
   cloudImg = loadImage("assets/cloud.png");
+  directionImg = loadImage("assets/direction.png");
   fishImg = loadImage("assets/fish.png");
   humidityImg = loadImage("assets/humidity.png");
   rainImg = loadImage("assets/rain.png");
