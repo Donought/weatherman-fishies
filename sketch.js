@@ -9,6 +9,10 @@ let city;
 let sunset;
 let sunSetTime;
 let inp;
+let windSpeed;
+let windDir;
+let weatherD;
+
 
 function preload() {
   city = "Viborg";
@@ -22,7 +26,7 @@ function setup() {
   createCanvas(innerWidth-16.45*prop, (innerHeight-0.0001)*prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
-  inp.position(width - inp.size().width, 40*3);
+  inp.position(width - inp.size().width-40, 40*3);
   refresh();
 
   relevantFish = season();
@@ -39,7 +43,8 @@ function draw() {
   fill(0);
   menuline();
   fpage();
-
+  fdisplay();
+  console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
 }
 
 function refresh() {
@@ -51,13 +56,52 @@ function refresh() {
   tmpfeel = json.main.feels_like;
   humidity = json.main.humidity;
   weather = json.weather[0].description;
-  precipitation = json2.daily.precipitation_sum[0];
 
-  var date = new Date(sunset * 1000);
-  var hours = date.getHours();
-  var minutes = "0" + date.getMinutes();
-  var seconds = "0" + date.getSeconds();
-  let sunSetTime = hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+
+
+
+
+  precipitation = json2.daily.precipitation_sum[0];
+  windSpeed = json.wind.speed;
+  windDeg = json.wind.deg;
+
+// If statements translating the wind direction into a cardinal directions
+  let steps = 360/16
+if(windDeg < steps || windDeg > steps*15 ){
+  windDir = "Nord"
+}
+else if(windDeg > steps && windDeg < steps*3 ){
+  windDir = "Nordvest"
+}
+else if(windDeg > steps*3 && windDeg < steps*5 ){
+  windDir = "Vest"
+}
+else if(windDeg > steps*5 && windDeg < steps*7 ){
+  windDir = "Sydvest"
+}
+else if(windDeg > steps*7 && windDeg < steps*9 ){
+  windDir = "Syd"
+}
+else if(windDeg > steps*9 && windDeg < steps*11 ){
+  windDir = "Sydøst"
+}
+else if(windDeg > steps*11 && windDeg < steps*13 ){
+  windDir = "Øst"
+}
+else if(windDeg > steps*13 && windDeg < steps*15 ){
+  windDir = "Nordøst"
+}
+
+
+
+
+
+  let date = new Date(sunset * 1000);
+  let hours = date.getHours();
+  let minutes = "0" + date.getMinutes();
+  let seconds = "0" + date.getSeconds();
+  sunSetTime = hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+  
 
   // Testing area
   console.log("Current city: " + city);
@@ -84,7 +128,6 @@ function url(city, api) {
     api
   );
 }
-
 function keyPressed() {
   if (keyCode === ENTER) {
     city = inp.value();
@@ -96,17 +139,5 @@ function keyPressed() {
 }
 
 
-function menuline() {
-  let spacing = 260;
-  let hspace = 120;
-  fill(0, 0, 240);
-  rect(0, 0, width, hspace * prop);
-  strokeWeight(2);
-  line(hspace * prop, -hspace * prop, hspace * prop, hspace * prop);
-  for (let i = 0; i < 9; i++) {
-    line((hspace * prop) + (spacing * prop) * i, -spacing * prop, (hspace * prop) + spacing * prop * i, hspace * prop);
-  }
-  line(0, hspace * prop, width, hspace * prop);
-  strokeWeight(1);
-}
+
 
