@@ -34,6 +34,7 @@ function preload() {
   cloudImg = loadImage("assets/cloud.png");
   directionImg = loadImage("assets/direction.png");
   fishImg = loadImage("assets/fish.png");
+  fishiesImg = loadImage("assets/fishies.png");
   humidityImg = loadImage("assets/humidity.png");
   rainImg = loadImage("assets/rain.png");
   sunImg = loadImage("assets/sun.png");
