@@ -28,25 +28,33 @@ function preload() {
   city = "Viborg";
   api = "e812164ca05ed9e0344b89ebe273c141";
   json = loadJSON(url(city, api), function () {
-    json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin");
+    json2 = loadJSON(
+      "https://api.open-meteo.com/v1/forecast?latitude=" +
+        json.coord.lat +
+        "&longitude=" +
+        json.coord.lon +
+        "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
+    );
   });
 
   cloudImg = loadImage("assets/cloud.png");
   directionImg = loadImage("assets/direction.png");
   fishImg = loadImage("assets/fish.png");
+  fishiesImg = loadImage("assets/fishies.png");
   humidityImg = loadImage("assets/humidity.png");
   rainImg = loadImage("assets/rain.png");
   sunImg = loadImage("assets/sun.png");
   sunsetImg = loadImage("assets/sunset.png");
   tempImg = loadImage("assets/temp.png");
   windImg = loadImage("assets/wind.png");
-};
+}
 
 function setup() {
-  createCanvas(innerWidth-16.45*prop, (innerHeight-0.0001)*prop);
+  createCanvas(innerWidth - 16.45 * prop, (innerHeight - 0.0001) * prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
   inp.position(width - inp.size().width-40, 40*2 );
+
   refresh();
 
   relevantFish = season();
@@ -64,11 +72,11 @@ function draw() {
   fill(0);
   menuline();
   fpage();
-  
-  //fdisplay();
+
   //console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
 
-  //image(fishImg, width/2-fishImg.width/2, height/2-fishImg.height/2);
+  image(fishiesImg, 10, 15);
+  futureWeather();
 }
 
 function refresh() {
@@ -85,32 +93,25 @@ function refresh() {
   windSpeed = json.wind.speed;
   windDeg = json.wind.deg;
 
-// If statements translating the wind direction into a cardinal directions
-let steps = 360/16
-if(windDeg < steps || windDeg > steps*15 ){
-  windDir = "Nord"
-}
-else if(windDeg > steps && windDeg < steps*3 ){
-  windDir = "Nordvest"
-}
-else if(windDeg > steps*3 && windDeg < steps*5 ){
-  windDir = "Vest"
-}
-else if(windDeg > steps*5 && windDeg < steps*7 ){
-  windDir = "Sydvest"
-}
-else if(windDeg > steps*7 && windDeg < steps*9 ){
-  windDir = "Syd"
-}
-else if(windDeg > steps*9 && windDeg < steps*11 ){
-  windDir = "Sydøst"
-}
-else if(windDeg > steps*11 && windDeg < steps*13 ){
-  windDir = "Øst"
-}
-else if(windDeg > steps*13 && windDeg < steps*15 ){
-  windDir = "Nordøst"
-}
+  // If statements translating the wind direction into a cardinal directions
+  let steps = 360 / 16;
+  if (windDeg < steps || windDeg > steps * 15) {
+    windDir = "Nord";
+  } else if (windDeg > steps && windDeg < steps * 3) {
+    windDir = "Nordvest";
+  } else if (windDeg > steps * 3 && windDeg < steps * 5) {
+    windDir = "Vest";
+  } else if (windDeg > steps * 5 && windDeg < steps * 7) {
+    windDir = "Sydvest";
+  } else if (windDeg > steps * 7 && windDeg < steps * 9) {
+    windDir = "Syd";
+  } else if (windDeg > steps * 9 && windDeg < steps * 11) {
+    windDir = "Sydøst";
+  } else if (windDeg > steps * 11 && windDeg < steps * 13) {
+    windDir = "Øst";
+  } else if (windDeg > steps * 13 && windDeg < steps * 15) {
+    windDir = "Nordøst";
+  }
 
   let date = new Date(sunset * 1000);
   let hours = date.getHours();
@@ -131,7 +132,16 @@ else if(windDeg > steps*13 && windDeg < steps*15 ){
 
   //console.log("\nFuture temperatures:");
   for (i = 1; i < 6; i++) {
-   // console.log("  " + json2.daily.time[i] + "\n    Min: " + json2.daily.temperature_2m_min[i] + json2.daily_units.temperature_2m_min + "\n    Max: " + json2.daily.temperature_2m_max[i] + json2.daily_units.temperature_2m_max);
+    /*console.log(
+      "  " +
+        json2.daily.time[i] +
+        "\n    Min: " +
+        json2.daily.temperature_2m_min[i] +
+        json2.daily_units.temperature_2m_min +
+        "\n    Max: " +
+        json2.daily.temperature_2m_max[i] +
+        json2.daily_units.temperature_2m_max
+    );*/
   }
 
 }
@@ -150,7 +160,17 @@ function keyPressed() {
     city = inp.value();
     console.log(city);
     json = loadJSON(url(city, api), function () {
-      json2 = loadJSON("https://api.open-meteo.com/v1/forecast?latitude=" + json.coord.lat + "&longitude=" + json.coord.lon + "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin", refresh);
+      temp = loadJSON(
+        "https://api.open-meteo.com/v1/forecast?latitude=" +
+          json.coord.lat +
+          "&longitude=" +
+          json.coord.lon +
+          "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin",
+        function () {
+          json2 = temp;
+          refresh();
+        }
+      );
     });
   }
 }
