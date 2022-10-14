@@ -30,10 +30,10 @@ function preload() {
   json = loadJSON(url(city, api), function () {
     json2 = loadJSON(
       "https://api.open-meteo.com/v1/forecast?latitude=" +
-      json.coord.lat +
-      "&longitude=" +
-      json.coord.lon +
-      "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
+        json.coord.lat +
+        "&longitude=" +
+        json.coord.lon +
+        "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
     );
   });
 
@@ -132,13 +132,13 @@ function refresh() {
   for (i = 1; i < 6; i++) {
     console.log(
       "  " +
-      json2.daily.time[i] +
-      "\n    Min: " +
-      json2.daily.temperature_2m_min[i] +
-      json2.daily_units.temperature_2m_min +
-      "\n    Max: " +
-      json2.daily.temperature_2m_max[i] +
-      json2.daily_units.temperature_2m_max
+        json2.daily.time[i] +
+        "\n    Min: " +
+        json2.daily.temperature_2m_min[i] +
+        json2.daily_units.temperature_2m_min +
+        "\n    Max: " +
+        json2.daily.temperature_2m_max[i] +
+        json2.daily_units.temperature_2m_max
     );
   }
 }
@@ -157,13 +157,16 @@ function keyPressed() {
     city = inp.value();
     console.log(city);
     json = loadJSON(url(city, api), function () {
-      json2 = loadJSON(
+      temp = loadJSON(
         "https://api.open-meteo.com/v1/forecast?latitude=" +
-        json.coord.lat +
-        "&longitude=" +
-        json.coord.lon +
-        "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin",
-        refresh
+          json.coord.lat +
+          "&longitude=" +
+          json.coord.lon +
+          "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin",
+        function () {
+          json2 = temp;
+          refresh();
+        }
       );
     });
   }
