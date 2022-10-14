@@ -88,7 +88,6 @@ function refresh() {
   tmpfeel = json.main.feels_like;
   humidity = json.main.humidity;
   weather = json.weather[0].description;
-
   precipitation = json2.daily.precipitation_sum[0];
   windSpeed = json.wind.speed;
   windDeg = json.wind.deg;
