@@ -25,8 +25,10 @@ let tempImg;
 let windImg;
 
 function preload() {
-  city = "Viborg";
+  city = "Viborg"; // The standard city that the website starts with
   api = "e812164ca05ed9e0344b89ebe273c141";
+
+  // Load datasets
   json = loadJSON(url(city, api), function () {
     json2 = loadJSON(
       "https://api.open-meteo.com/v1/forecast?latitude=" +
@@ -37,6 +39,7 @@ function preload() {
     );
   });
 
+  // Load images from assets folder
   cloudImg = loadImage("assets/cloud.png");
   directionImg = loadImage("assets/direction.png");
   fishImg = loadImage("assets/fish.png");
@@ -49,15 +52,19 @@ function preload() {
 }
 
 function setup() {
+  // Prop makes the canvas scalable. But as we eventually abandoned scalability, this isn't as necessary
   createCanvas(innerWidth - 16.45 * prop, (innerHeight - 0.0001) * prop);
+
+  // Creates input field
   inp = createInput("");
   inp.size(200, 40 * prop);
   inp.position(width - inp.size().width - 40, 40 * 2);
 
-  refresh();
+  refresh(); // Refresh is run once in setup in order to establish the data
 
   relevantFish = season();
 
+  // Debugging in console
   for (i = 0; i < relevantFish.length; i++) {
     console.log(
       "Navn: " + relevantFish[i].name + " | Værdi: " + relevantFish[i].val
@@ -65,6 +72,7 @@ function setup() {
   }
 }
 
+// All of the graphics functions are run in draw to make sure they are constantly updated
 function draw() {
   background(255);
   fill(0);
@@ -112,7 +120,7 @@ function refresh() {
   let seconds = "0" + date.getSeconds();
   sunSetTime = hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
 
-  // Testing area
+  // Debugging in console
   console.log("Current city: " + city);
   console.log("Current tmp is: " + tmp + "°");
   console.log("Current weather: " + weather);
@@ -123,9 +131,9 @@ function refresh() {
   console.log("Humidity is: " + humidity + "%");
   console.log("Precipitation is: " + precipitation + " mm");
 
-  //console.log("\nFuture temperatures:");
+  console.log("\nFuture temperatures:");
   for (i = 1; i < 6; i++) {
-    /*console.log(
+    console.log(
       "  " +
         json2.daily.time[i] +
         "\n    Min: " +
@@ -134,10 +142,11 @@ function refresh() {
         "\n    Max: " +
         json2.daily.temperature_2m_max[i] +
         json2.daily_units.temperature_2m_max
-    );*/
+    );
   }
 }
 
+// Function that returns an api link with a custom city name. The api variable is the key
 function url(city, api) {
   return (
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -147,10 +156,17 @@ function url(city, api) {
   );
 }
 
+// This function runs on any keypress
 function keyPressed() {
+  // Checks whether the key pressed was ENTER or not
   if (keyCode === ENTER) {
+    // Stores current city name in the input field
     city = inp.value();
     console.log(city);
+
+    // Here the datasets are loaded again, taking the new city into consideration
+    // As the load functions are asynchronous, it's necessary to make them run after each other (as json2 uses info from json's dataset)
+    // This is achieved through the use of the second argument in loadJSON, which is the function that is to run when it's done loading
     json = loadJSON(url(city, api), function () {
       temp = loadJSON(
         "https://api.open-meteo.com/v1/forecast?latitude=" +
