@@ -132,4 +132,12 @@ at an interval so that they can be viewed
     width - smargin * 8,
     smargin * 5.3
   );
+
+  // Display current city
+  fill(0);
+  stroke(0);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  text("Lokation: " + json.name, width / 2, 180);
+  textAlign(LEFT, CENTER);
 }

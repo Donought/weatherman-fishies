@@ -1,4 +1,4 @@
-let prop = 1; //Prop = proportion
+let prop = 1; // Prop = proportion
 let tmp = 0;
 let weather = "";
 let json;
