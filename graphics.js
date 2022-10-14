@@ -63,16 +63,16 @@ fill(0)
 
 text("Fisk lige nu:",width-smargin*7,smargin*4.9)
 textSize(20)
-for (let i = 0; i < fishNames.length; i++) {
+for (let i = 0; i < relevantFish.length; i++) {
   fill(0)
   noStroke()
-  text(fishNames[i],width-smargin*8,smargin*6.5+i*28)
-  if(fishScore[i]>1){
-    fill(0,255,0)
+  text(relevantFish[i].name,width-smargin*8,smargin*6.5+i*28)
+  if(relevantFish[i].val>1){
+    fill(0,0,255)
   }else{
     fill(0)
   }
-  text(fishScore[i],width-smargin*4,smargin*6.5+i*28)
+  text(relevantFish[i].val,width-smargin*4,smargin*6.5+i*28)
 }
 fill(0)  
 text("Type:                       Score:",width-smargin*8,smargin*5.7)
@@ -80,11 +80,3 @@ text("Type:                       Score:",width-smargin*8,smargin*5.7)
 
 
   }
-function fishSorter(){
-  for (let i = 0; i < relevantFish.length; i++) {
-    fishNames.push(relevantFish[i].name)
-    fishScore.push(relevantFish[i].val)
-    
-  }
-
-}
