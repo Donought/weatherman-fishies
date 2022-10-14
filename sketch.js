@@ -12,6 +12,7 @@ let inp;
 let windSpeed;
 let windDir;
 let weatherD;
+let relevantFish = [];
 
 // Symboler
 let cloudImg;
@@ -53,7 +54,7 @@ function setup() {
   createCanvas(innerWidth - 16.45 * prop, (innerHeight - 0.0001) * prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
-  inp.position(width - inp.size().width-40, 40*2 );
+  inp.position(width - inp.size().width - 40, 40 * 2);
 
   refresh();
 
@@ -143,7 +144,6 @@ function refresh() {
         json2.daily_units.temperature_2m_max
     );*/
   }
-
 }
 
 function url(city, api) {
