@@ -30,10 +30,10 @@ function preload() {
   json = loadJSON(url(city, api), function () {
     json2 = loadJSON(
       "https://api.open-meteo.com/v1/forecast?latitude=" +
-        json.coord.lat +
-        "&longitude=" +
-        json.coord.lon +
-        "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
+      json.coord.lat +
+      "&longitude=" +
+      json.coord.lon +
+      "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin"
     );
   });
 
@@ -74,7 +74,7 @@ function draw() {
   //console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
 
   image(fishiesImg, 10, 15);
-  futureTemp();
+  futureWeather();
 }
 
 function refresh() {
@@ -132,13 +132,13 @@ function refresh() {
   for (i = 1; i < 6; i++) {
     console.log(
       "  " +
-        json2.daily.time[i] +
-        "\n    Min: " +
-        json2.daily.temperature_2m_min[i] +
-        json2.daily_units.temperature_2m_min +
-        "\n    Max: " +
-        json2.daily.temperature_2m_max[i] +
-        json2.daily_units.temperature_2m_max
+      json2.daily.time[i] +
+      "\n    Min: " +
+      json2.daily.temperature_2m_min[i] +
+      json2.daily_units.temperature_2m_min +
+      "\n    Max: " +
+      json2.daily.temperature_2m_max[i] +
+      json2.daily_units.temperature_2m_max
     );
   }
 }
@@ -159,10 +159,10 @@ function keyPressed() {
     json = loadJSON(url(city, api), function () {
       json2 = loadJSON(
         "https://api.open-meteo.com/v1/forecast?latitude=" +
-          json.coord.lat +
-          "&longitude=" +
-          json.coord.lon +
-          "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin",
+        json.coord.lat +
+        "&longitude=" +
+        json.coord.lon +
+        "&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Europe%2FBerlin",
         refresh
       );
     });
