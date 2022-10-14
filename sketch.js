@@ -12,6 +12,7 @@ let inp;
 let windSpeed;
 let windDir;
 let weatherD;
+let relevantFish = [];
 
 // Symboler
 let cloudImg;
@@ -19,7 +20,6 @@ let directionImg;
 let fishImg;
 let humidityImg;
 let rainImg;
-let sunImg;
 let sunsetImg;
 let tempImg;
 let windImg;
@@ -43,7 +43,6 @@ function preload() {
   fishiesImg = loadImage("assets/fishies.png");
   humidityImg = loadImage("assets/humidity.png");
   rainImg = loadImage("assets/rain.png");
-  sunImg = loadImage("assets/sun.png");
   sunsetImg = loadImage("assets/sunset.png");
   tempImg = loadImage("assets/temp.png");
   windImg = loadImage("assets/wind.png");
@@ -53,17 +52,16 @@ function setup() {
   createCanvas(innerWidth - 16.45 * prop, (innerHeight - 0.0001) * prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
-  inp.position(width - inp.size().width-40, 40*2 );
+  inp.position(width - inp.size().width - 40, 40 * 2);
 
   refresh();
 
   relevantFish = season();
 
   for (i = 0; i < relevantFish.length; i++) {
-    /*console.log(
+    console.log(
       "Navn: " + relevantFish[i].name + " | Værdi: " + relevantFish[i].val
     );
-    */
   }
 }
 
@@ -142,7 +140,6 @@ function refresh() {
         json2.daily_units.temperature_2m_max
     );*/
   }
-
 }
 
 function url(city, api) {
