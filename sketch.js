@@ -59,10 +59,9 @@ function setup() {
   relevantFish = season();
 
   for (i = 0; i < relevantFish.length; i++) {
-    /*console.log(
+    console.log(
       "Navn: " + relevantFish[i].name + " | Værdi: " + relevantFish[i].val
     );
-    */
   }
 }
 
