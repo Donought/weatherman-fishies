@@ -70,10 +70,6 @@ function draw() {
   fill(0);
   menuline();
   fpage();
-
-  //console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
-
-  image(fishiesImg, 10, 15);
   futureWeather();
 }
 
