@@ -20,7 +20,6 @@ let directionImg;
 let fishImg;
 let humidityImg;
 let rainImg;
-let sunImg;
 let sunsetImg;
 let tempImg;
 let windImg;
@@ -44,7 +43,6 @@ function preload() {
   fishiesImg = loadImage("assets/fishies.png");
   humidityImg = loadImage("assets/humidity.png");
   rainImg = loadImage("assets/rain.png");
-  sunImg = loadImage("assets/sun.png");
   sunsetImg = loadImage("assets/sunset.png");
   tempImg = loadImage("assets/temp.png");
   windImg = loadImage("assets/wind.png");
