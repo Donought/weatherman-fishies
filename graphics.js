@@ -61,7 +61,8 @@ stroke(0)
 rect(width-smargin,0+smargin*3,-smargin*8+(extraText),height)
 textSize(32)
 fill(0)
-text("Fisk lige nu:",width-smargin*7,smargin*4.9)
+text("Fisk lige nu:",width-smargin*7,smargin*4.2)
+image(fishImg,width-smargin*8.6,smargin*3.5,sMod,sMod)
 textSize(20)
 /* Getting the seasonal fish from the array and placing them into the box 
 at an interval so that they can be viewed
@@ -69,18 +70,18 @@ at an interval so that they can be viewed
 for (let i = 0; i < relevantFish.length; i++) {
   fill(0)
   noStroke()
-  text(relevantFish[i].name,width-smargin*8,smargin*6.5+i*28)
+  text(relevantFish[i].name,width-smargin*8,smargin*6+i*28)
 // Colors the especially relevant fish values so they're easier to see  
   if(relevantFish[i].val>1){
     fill(0,0,255)
   }else{
     fill(0)
   }
-  text(relevantFish[i].val,width-smargin*4,smargin*6.5+i*28)
+  text(relevantFish[i].val,width-smargin*4,smargin*6+i*28)
 }
 // Adds labels to seasonal fish box
 fill(0)  
-text("Type:                       Score:",width-smargin*8,smargin*5.7)
+text("Type:                       Score:",width-smargin*8,smargin*5.3)
 
 
 
