@@ -53,15 +53,17 @@ function setup() {
   createCanvas(innerWidth - 16.45 * prop, (innerHeight - 0.0001) * prop);
   inp = createInput("");
   inp.size(200, 40 * prop);
-  inp.position(width - inp.size().width - 40, 40 * 3);
+  inp.position(width - inp.size().width-40, 40*2 );
+
   refresh();
 
   relevantFish = season();
 
   for (i = 0; i < relevantFish.length; i++) {
-    console.log(
+    /*console.log(
       "Navn: " + relevantFish[i].name + " | Værdi: " + relevantFish[i].val
     );
+    */
   }
 }
 
@@ -70,7 +72,7 @@ function draw() {
   fill(0);
   menuline();
   fpage();
-  fdisplay();
+
   //console.log("MouseX: ",round(mouseX,2)," MouseY: ",round(mouseY,2))
 
   image(fishiesImg, 10, 15);
@@ -128,9 +130,9 @@ function refresh() {
   console.log("Humidity is: " + humidity + "%");
   console.log("Precipitation is: " + precipitation + " mm");
 
-  console.log("\nFuture temperatures:");
+  //console.log("\nFuture temperatures:");
   for (i = 1; i < 6; i++) {
-    console.log(
+    /*console.log(
       "  " +
         json2.daily.time[i] +
         "\n    Min: " +
@@ -139,8 +141,9 @@ function refresh() {
         "\n    Max: " +
         json2.daily.temperature_2m_max[i] +
         json2.daily_units.temperature_2m_max
-    );
+    );*/
   }
+
 }
 
 function url(city, api) {
