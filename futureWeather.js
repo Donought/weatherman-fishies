@@ -51,7 +51,7 @@ function futureWeather() {
     fBox(640, 100 + a * i, w - 670, a - 20);
     image(rainImg, x + 660, y + 110 + a * i, a - 40, a - 40);
     fText(
-      "Sum: " + json2.daily.precipitation_sum[i + 1] + " ml",
+      "Sum: " + json2.daily.precipitation_sum[i + 1] + " mm",
       760,
       90 + a * i + a * 0.5,
       30

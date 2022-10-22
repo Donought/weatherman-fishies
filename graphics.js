@@ -55,7 +55,7 @@ function fpage() {
     humidity + "%",
     weather,
     "kl: " + sunSetTime,
-    precipitation + " ml",
+    precipitation + " mm",
     windSpeed + " m/s",
     windDir,
   ];
